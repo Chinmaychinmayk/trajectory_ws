@@ -55,6 +55,8 @@ public:
     );
 
     double getTrackingError() const { return tracking_error_; }
+    TrajectoryPoint getLookaheadPoint() const { return current_lookahead_; }
+    size_t getClosestIndex() const { return last_closest_index_; }
     
 private:
     // Parameters
@@ -73,6 +75,7 @@ private:
     double integral_error_ = 0.0;
     double previous_error_ = 0.0;
     size_t last_closest_index_ = 0; // Optimization hint
+    TrajectoryPoint current_lookahead_;
 
     // Control Implementations
     geometry_msgs::msg::Twist purePursuitControl(

@@ -1,1 +1,1 @@
-rclcpp;std_msgs;geometry_msgs;nav_msgs;visualization_msgs;tf2;tf2_ros;tf2_geometry_msgs;gazebo_ros;ament_lint_auto;ament_lint_common;ament_cmake_gtest
+/home/newuser/trajectory_ws1/build/path_smoothing_control/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/path_smoothing_control

@@ -1,0 +1,1 @@
+/home/newuser/trajectory_ws1/src/path_smoothing_control/scripts/mock_sim_node.py

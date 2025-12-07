@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/newuser/trajectory_ws/install/path_smoothing_control")
+  set(CMAKE_INSTALL_PREFIX "/home/newuser/trajectory_ws1/install/path_smoothing_control")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

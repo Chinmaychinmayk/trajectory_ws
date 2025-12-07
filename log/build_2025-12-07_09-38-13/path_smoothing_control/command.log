@@ -1,6 +1,0 @@
-Invoking command in '/home/newuser/trajectory_ws/build/path_smoothing_control': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/newuser/trajectory_ws/src/path_smoothing_control -DCMAKE_INSTALL_PREFIX=/home/newuser/trajectory_ws/install/path_smoothing_control
-Invoked command in '/home/newuser/trajectory_ws/build/path_smoothing_control' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/newuser/trajectory_ws/src/path_smoothing_control -DCMAKE_INSTALL_PREFIX=/home/newuser/trajectory_ws/install/path_smoothing_control
-Invoking command in '/home/newuser/trajectory_ws/build/path_smoothing_control': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/newuser/trajectory_ws/build/path_smoothing_control -- -j16 -l16
-Invoked command in '/home/newuser/trajectory_ws/build/path_smoothing_control' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/newuser/trajectory_ws/build/path_smoothing_control -- -j16 -l16
-Invoking command in '/home/newuser/trajectory_ws/build/path_smoothing_control': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/newuser/trajectory_ws/build/path_smoothing_control
-Invoked command in '/home/newuser/trajectory_ws/build/path_smoothing_control' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/newuser/trajectory_ws/build/path_smoothing_control

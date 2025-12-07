@@ -1,0 +1,55 @@
+[0.015s] Invoking command in '/home/newuser/trajectory_ws1/build/path_smoothing_control': AMENT_PREFIX_PATH=/home/newuser/trajectory_ws1/install/path_smoothing_control:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/newuser/trajectory_ws1/install/path_smoothing_control /usr/bin/ctest -C Release -D ExperimentalTest --no-compress-output -V --force-new-ctest-process
+[0.021s] UpdateCTestConfiguration  from :/home/newuser/trajectory_ws1/build/path_smoothing_control/CTestConfiguration.ini
+[0.021s] Parse Config file:/home/newuser/trajectory_ws1/build/path_smoothing_control/CTestConfiguration.ini
+[0.021s]    Site: chinmay-MS-7D48
+[0.021s]    Build name: (empty)
+[0.021s]  Add coverage exclude regular expressions.
+[0.021s] Create new tag: 20251207-1644 - Experimental
+[0.021s] UpdateCTestConfiguration  from :/home/newuser/trajectory_ws1/build/path_smoothing_control/CTestConfiguration.ini
+[0.022s] Parse Config file:/home/newuser/trajectory_ws1/build/path_smoothing_control/CTestConfiguration.ini
+[0.022s] Test project /home/newuser/trajectory_ws1/build/path_smoothing_control
+[0.022s] Constructing a list of tests
+[0.022s] Done constructing a list of tests
+[0.022s] Updating test list for fixtures
+[0.022s] Added 0 tests to meet fixture requirements
+[0.022s] Checking test dependency graph...
+[0.022s] Checking test dependency graph end
+[0.022s] test 1
+[0.022s]     Start 1: test_controller
+[0.022s] 
+[0.022s] 1: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml" "--package-name" "path_smoothing_control" "--output-file" "/home/newuser/trajectory_ws1/build/path_smoothing_control/ament_cmake_gtest/test_controller.txt" "--command" "/home/newuser/trajectory_ws1/build/path_smoothing_control/test_controller" "--gtest_output=xml:/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml"
+[0.022s] 1: Test timeout computed to be: 60
+[0.058s] 1: -- run_test.py: invoking following command in '/home/newuser/trajectory_ws1/build/path_smoothing_control':
+[0.058s] 1:  - /home/newuser/trajectory_ws1/build/path_smoothing_control/test_controller --gtest_output=xml:/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml
+[0.059s] 1: [==========] Running 6 tests from 1 test suite.
+[0.059s] 1: [----------] Global test environment set-up.
+[0.059s] 1: [----------] 6 tests from TrajectoryControllerTest
+[0.059s] 1: [ RUN      ] TrajectoryControllerTest.PurePursuitControl
+[0.059s] 1: [       OK ] TrajectoryControllerTest.PurePursuitControl (0 ms)
+[0.059s] 1: [ RUN      ] TrajectoryControllerTest.StanleyControl
+[0.059s] 1: [       OK ] TrajectoryControllerTest.StanleyControl (0 ms)
+[0.059s] 1: [ RUN      ] TrajectoryControllerTest.PIDControl
+[0.059s] 1: [       OK ] TrajectoryControllerTest.PIDControl (0 ms)
+[0.059s] 1: [ RUN      ] TrajectoryControllerTest.GoalReachedCheck
+[0.059s] 1: [       OK ] TrajectoryControllerTest.GoalReachedCheck (0 ms)
+[0.059s] 1: [ RUN      ] TrajectoryControllerTest.EmptyTrajectory
+[0.059s] 1: [       OK ] TrajectoryControllerTest.EmptyTrajectory (0 ms)
+[0.059s] 1: [ RUN      ] TrajectoryControllerTest.TrackingError
+[0.059s] 1: [       OK ] TrajectoryControllerTest.TrackingError (0 ms)
+[0.059s] 1: [----------] 6 tests from TrajectoryControllerTest (0 ms total)
+[0.059s] 1: 
+[0.059s] 1: [----------] Global test environment tear-down
+[0.059s] 1: [==========] 6 tests from 1 test suite ran. (0 ms total)
+[0.059s] 1: [  PASSED  ] 6 tests.
+[0.059s] 1: -- run_test.py: return code 0
+[0.059s] 1: -- run_test.py: inject classname prefix into gtest result file '/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml'
+[0.060s] 1: -- run_test.py: verify result file '/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml'
+[0.065s] 1/1 Test #1: test_controller ..................   Passed    0.04 sec
+[0.065s] 
+[0.065s] [0;32m100% tests passed[0;0m, 0 tests failed[0;0m out of 1
+[0.065s] 
+[0.065s] Label Time Summary:
+[0.065s] gtest    =   0.04 sec*proc (1 test)
+[0.065s] 
+[0.065s] Total Test time (real) =   0.04 sec
+[0.068s] Invoked command in '/home/newuser/trajectory_ws1/build/path_smoothing_control' returned '0': AMENT_PREFIX_PATH=/home/newuser/trajectory_ws1/install/path_smoothing_control:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/newuser/trajectory_ws1/install/path_smoothing_control /usr/bin/ctest -C Release -D ExperimentalTest --no-compress-output -V --force-new-ctest-process

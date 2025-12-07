@@ -1,0 +1,53 @@
+UpdateCTestConfiguration  from :/home/newuser/trajectory_ws1/build/path_smoothing_control/CTestConfiguration.ini
+Parse Config file:/home/newuser/trajectory_ws1/build/path_smoothing_control/CTestConfiguration.ini
+   Site: chinmay-MS-7D48
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+Create new tag: 20251207-1644 - Experimental
+UpdateCTestConfiguration  from :/home/newuser/trajectory_ws1/build/path_smoothing_control/CTestConfiguration.ini
+Parse Config file:/home/newuser/trajectory_ws1/build/path_smoothing_control/CTestConfiguration.ini
+Test project /home/newuser/trajectory_ws1/build/path_smoothing_control
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: test_controller
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml" "--package-name" "path_smoothing_control" "--output-file" "/home/newuser/trajectory_ws1/build/path_smoothing_control/ament_cmake_gtest/test_controller.txt" "--command" "/home/newuser/trajectory_ws1/build/path_smoothing_control/test_controller" "--gtest_output=xml:/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml"
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/home/newuser/trajectory_ws1/build/path_smoothing_control':
+1:  - /home/newuser/trajectory_ws1/build/path_smoothing_control/test_controller --gtest_output=xml:/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml
+1: [==========] Running 6 tests from 1 test suite.
+1: [----------] Global test environment set-up.
+1: [----------] 6 tests from TrajectoryControllerTest
+1: [ RUN      ] TrajectoryControllerTest.PurePursuitControl
+1: [       OK ] TrajectoryControllerTest.PurePursuitControl (0 ms)
+1: [ RUN      ] TrajectoryControllerTest.StanleyControl
+1: [       OK ] TrajectoryControllerTest.StanleyControl (0 ms)
+1: [ RUN      ] TrajectoryControllerTest.PIDControl
+1: [       OK ] TrajectoryControllerTest.PIDControl (0 ms)
+1: [ RUN      ] TrajectoryControllerTest.GoalReachedCheck
+1: [       OK ] TrajectoryControllerTest.GoalReachedCheck (0 ms)
+1: [ RUN      ] TrajectoryControllerTest.EmptyTrajectory
+1: [       OK ] TrajectoryControllerTest.EmptyTrajectory (0 ms)
+1: [ RUN      ] TrajectoryControllerTest.TrackingError
+1: [       OK ] TrajectoryControllerTest.TrackingError (0 ms)
+1: [----------] 6 tests from TrajectoryControllerTest (0 ms total)
+1: 
+1: [----------] Global test environment tear-down
+1: [==========] 6 tests from 1 test suite ran. (0 ms total)
+1: [  PASSED  ] 6 tests.
+1: -- run_test.py: return code 0
+1: -- run_test.py: inject classname prefix into gtest result file '/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml'
+1: -- run_test.py: verify result file '/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml'
+1/1 Test #1: test_controller ..................   Passed    0.04 sec
+
+[0;32m100% tests passed[0;0m, 0 tests failed[0;0m out of 1
+
+Label Time Summary:
+gtest    =   0.04 sec*proc (1 test)
+
+Total Test time (real) =   0.04 sec

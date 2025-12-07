@@ -120,6 +120,9 @@ geometry_msgs::msg::Twist TrajectoryController::purePursuitControl(
     geometry_msgs::msg::Twist cmd_vel;
     size_t closest_idx = findClosestPoint(current_pose, trajectory);
     TrajectoryPoint lookahead = findLookaheadPoint(current_pose, trajectory, closest_idx);
+    
+    // Store for debugging/visualization
+    current_lookahead_ = lookahead;
 
     double dx = lookahead.x - current_pose.x;
     double dy = lookahead.y - current_pose.y;
@@ -131,19 +134,46 @@ geometry_msgs::msg::Twist TrajectoryController::purePursuitControl(
 
     double distance_sq = dx_robot * dx_robot + dy_robot * dy_robot;
     double curvature = 0.0;
-    if (distance_sq > 1e-6) {
+    if (distance_sq > 1e-4) {
         curvature = 2.0 * dy_robot / distance_sq;
     }
 
     double target_velocity = trajectory[closest_idx].velocity;
-    cmd_vel.linear.x = std::clamp(target_velocity, 0.0, max_linear_velocity_);
-    cmd_vel.angular.z = curvature * cmd_vel.linear.x;
+    
+    // If we are very close to the end, just stop or use final velocity
+    // If we are very close to the end, just stop or use final velocity
+    if (closest_idx >= trajectory.size() - 5) {
+         target_velocity = std::min(target_velocity, 0.1); 
+    } else {
+         // Ensure minimum velocity to start motion
+         target_velocity = std::max(target_velocity, 0.05);
+    }
 
+    cmd_vel.linear.x = std::clamp(target_velocity, 0.0, max_linear_velocity_);
+    
+    // Pure Pursuit modification: Allow rotation in place if velocity is negligible
+    if (std::abs(cmd_vel.linear.x) < 0.01) {
+        // Find heading error to lookahead point
+        double heading_to_target = std::atan2(dy, dx);
+        double heading_error = normalizeAngle(heading_to_target - current_pose.theta);
+        
+        // Use a simple P-controller for rotation in place
+        cmd_vel.angular.z = kp_angular_ * heading_error;
+    } else {
+        cmd_vel.angular.z = curvature * cmd_vel.linear.x;
+    }
+    
+    // Clamp angular velocity
     cmd_vel.angular.z = std::clamp(cmd_vel.angular.z,
                                      -max_angular_velocity_,
                                      max_angular_velocity_);
 
-    tracking_error_ = std::hypot(dx, dy);
+    tracking_error_ = std::hypot(dx, dy); // This is actually lookahead distance, maybe Cross Track Error is better metric? 
+    // For PP, tracking error usually refers to distance to path. 
+    // Let's compute CTE for logging.
+    TrajectoryPoint closest = trajectory[closest_idx];
+    tracking_error_ = computeCrossTrackError(current_pose, closest);
+
     return cmd_vel;
 }
 

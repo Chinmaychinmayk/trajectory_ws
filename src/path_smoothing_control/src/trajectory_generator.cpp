@@ -38,14 +38,25 @@ std::vector<double> TrajectoryGenerator::calculateVelocityProfile(
     
     // Trapezoidal Profile Implementation
     double L_total = distances.back();
-    double d_a = max_v_ * max_v_ / (2.0 * max_a_); // Distance to reach max_v
+    double d_accel_limit = max_v_ * max_v_ / (2.0 * max_a_); // Distance to reach max_v
+    
+    // Check if we can reach max_v or if we need a triangle profile
+    double d_accel = d_accel_limit;
+    double d_decel = L_total - d_accel_limit;
+    
+    if (d_accel_limit * 2.0 > L_total) {
+        // Triangle profile
+        d_accel = L_total / 2.0;
+        d_decel = L_total / 2.0;
+    }
+
     velocities.reserve(distances.size());
 
     for (double d : distances) {
         double v = 0.0;
-        if (d <= d_a) {
+        if (d <= d_accel) {
             v = std::sqrt(2.0 * max_a_ * d);
-        } else if (d > d_a && d <= (L_total - d_a)) {
+        } else if (d > d_accel && d < d_decel) {
             v = max_v_;
         } else {
             double d_remain = L_total - d;
@@ -90,12 +101,22 @@ std::vector<TrajectoryPoint> TrajectoryGenerator::generateTrajectory(
 
     for (size_t i = 0; i < distances.size() - 1; ++i) {
         double dl = distances[i+1] - distances[i];
-        double v_avg = (velocities[i+1] + velocities[i]) / 2.0;
+        double v_start = velocities[i];
+        double v_end = velocities[i+1];
         
-        // Safety: Avoid division by zero/near-zero
-        if (v_avg < 0.01) v_avg = 0.01;
+        double dt = 0.0;
         
-        current_time += dl / v_avg;
+        // Trapezoidal integration: dt = 2 * dl / (v_start + v_end)
+        // Handle cases where velocities are zero or very small
+        if (v_start < 1e-3 && v_end < 1e-3) {
+            // Should not happen in a valid motion profile moving forward
+            // Assign a small dummy dt or 0 if start/end of path
+             dt = 0.1; // Fallback
+        } else {
+             dt = 2.0 * dl / (v_start + v_end);
+        }
+
+        current_time += dt;
         timestamps.push_back(current_time);
     }
     total_time_ = current_time;

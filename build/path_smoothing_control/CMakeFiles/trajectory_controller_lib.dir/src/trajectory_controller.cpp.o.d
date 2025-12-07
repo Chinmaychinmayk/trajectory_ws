@@ -1,7 +1,7 @@
 CMakeFiles/trajectory_controller_lib.dir/src/trajectory_controller.cpp.o: \
- /home/newuser/trajectory_ws/src/path_smoothing_control/src/trajectory_controller.cpp \
+ /home/newuser/trajectory_ws1/src/path_smoothing_control/src/trajectory_controller.cpp \
  /usr/include/stdc-predef.h \
- /home/newuser/trajectory_ws/src/path_smoothing_control/include/path_smoothing_control/trajectory_controller.hpp \
+ /home/newuser/trajectory_ws1/src/path_smoothing_control/include/path_smoothing_control/trajectory_controller.hpp \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -229,7 +229,7 @@ CMakeFiles/trajectory_controller_lib.dir/src/trajectory_controller.cpp.o: \
  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/twist_with_covariance__traits.hpp \
  /opt/ros/humble/include/nav_msgs/nav_msgs/msg/detail/odometry__type_support.hpp \
  /opt/ros/humble/include/nav_msgs/nav_msgs/msg/rosidl_generator_cpp__visibility_control.hpp \
- /home/newuser/trajectory_ws/src/path_smoothing_control/include/path_smoothing_control/trajectory_generator.hpp \
+ /home/newuser/trajectory_ws1/src/path_smoothing_control/include/path_smoothing_control/trajectory_generator.hpp \
  /usr/include/c++/11/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -252,7 +252,7 @@ CMakeFiles/trajectory_controller_lib.dir/src/trajectory_controller.cpp.o: \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
  /usr/include/c++/11/tr1/riemann_zeta.tcc \
- /home/newuser/trajectory_ws/src/path_smoothing_control/include/path_smoothing_control/path_smoother.hpp \
+ /home/newuser/trajectory_ws1/src/path_smoothing_control/include/path_smoothing_control/path_smoother.hpp \
  /opt/ros/humble/include/nav_msgs/nav_msgs/msg/path.hpp \
  /opt/ros/humble/include/nav_msgs/nav_msgs/msg/detail/path__struct.hpp \
  /opt/ros/humble/include/geometry_msgs/geometry_msgs/msg/detail/pose_stamped__struct.hpp \

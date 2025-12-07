@@ -1,0 +1,1 @@
+/home/newuser/trajectory_ws1/src/path_smoothing_control/launch/node_only.launch.py

@@ -1,0 +1,28 @@
+-- run_test.py: invoking following command in '/home/newuser/trajectory_ws1/build/path_smoothing_control':
+ - /home/newuser/trajectory_ws1/build/path_smoothing_control/test_controller --gtest_output=xml:/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml
+
+[==========] Running 6 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 6 tests from TrajectoryControllerTest
+[ RUN      ] TrajectoryControllerTest.PurePursuitControl
+[       OK ] TrajectoryControllerTest.PurePursuitControl (0 ms)
+[ RUN      ] TrajectoryControllerTest.StanleyControl
+[       OK ] TrajectoryControllerTest.StanleyControl (0 ms)
+[ RUN      ] TrajectoryControllerTest.PIDControl
+[       OK ] TrajectoryControllerTest.PIDControl (0 ms)
+[ RUN      ] TrajectoryControllerTest.GoalReachedCheck
+[       OK ] TrajectoryControllerTest.GoalReachedCheck (0 ms)
+[ RUN      ] TrajectoryControllerTest.EmptyTrajectory
+[       OK ] TrajectoryControllerTest.EmptyTrajectory (0 ms)
+[ RUN      ] TrajectoryControllerTest.TrackingError
+[       OK ] TrajectoryControllerTest.TrackingError (0 ms)
+[----------] 6 tests from TrajectoryControllerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 6 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 6 tests.
+
+
+-- run_test.py: return code 0
+-- run_test.py: inject classname prefix into gtest result file '/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml'
+-- run_test.py: verify result file '/home/newuser/trajectory_ws1/build/path_smoothing_control/test_results/path_smoothing_control/test_controller.gtest.xml'

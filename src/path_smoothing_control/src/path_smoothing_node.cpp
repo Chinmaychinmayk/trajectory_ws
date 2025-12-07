@@ -56,10 +56,15 @@ public:
     );
 
     // 3. Publishers and Subscribers
+    rclcpp::QoS qos_transient(10);
+    qos_transient.transient_local();
+
     cmd_vel_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
-    path_pub_ = this->create_publisher<nav_msgs::msg::Path>("/planned_path", 10);
-    smooth_path_pub_ = this->create_publisher<nav_msgs::msg::Path>("/smooth_path", 10);
-    trajectory_marker_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("/trajectory_marker", 10);
+    path_pub_ = this->create_publisher<nav_msgs::msg::Path>("/planned_path", qos_transient);
+    smooth_path_pub_ = this->create_publisher<nav_msgs::msg::Path>("/smooth_path", qos_transient);
+    trajectory_marker_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("/trajectory_marker", qos_transient);
+    lookahead_marker_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("/lookahead_marker", 10);
+    closest_point_marker_pub_ = this->create_publisher<visualization_msgs::msg::Marker>("/closest_point_marker", 10);
     odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(
         "/odom", 10, std::bind(&PathSmoothingNode::odomCallback, this, std::placeholders::_1));
 
@@ -94,8 +99,14 @@ private:
     }
 
     waypoints_.clear();
+    waypoints_.clear();
     for (size_t i = 0; i < x_coords.size(); ++i) {
       waypoints_.push_back({x_coords[i], y_coords[i]});
+    }
+    
+    RCLCPP_INFO(this->get_logger(), "Loaded %zu waypoints.", waypoints_.size());
+    if (!waypoints_.empty()) {
+        RCLCPP_INFO(this->get_logger(), "Last Waypoint: (%.2f, %.2f)", waypoints_.back().x, waypoints_.back().y);
     }
   }
 
@@ -107,6 +118,11 @@ private:
     int num_samples = this->get_parameter("smoothing_samples").as_int();
     // Assuming BSPLINE is the default implemented type
     smooth_path_ = path_smoother_->smoothPath(waypoints_, num_samples, SmoothingType::BSPLINE);
+    
+    if (!smooth_path_.empty()) {
+         auto p = smooth_path_.back();
+         RCLCPP_INFO(this->get_logger(), "Smoothed Path Back: (%.4f, %.4f)", p.x, p.y);
+    }
 
     // Generate time-parameterized trajectory
     // Assuming TRAPEZOIDAL is the default implemented profile
@@ -146,6 +162,13 @@ private:
       smooth_path_msg.poses.push_back(pose);
     }
     smooth_path_pub_->publish(smooth_path_msg);
+
+    if (!smooth_path_.empty()) {
+        RCLCPP_INFO(this->get_logger(), "Published smooth path with %zu points.", smooth_path_.size());
+        RCLCPP_INFO(this->get_logger(), "Start: (%.2f, %.2f), End: (%.2f, %.2f)",
+            smooth_path_.front().x, smooth_path_.front().y,
+            smooth_path_.back().x, smooth_path_.back().y);
+    }
 
     // Publish trajectory markers
     visualization_msgs::msg::Marker marker;
@@ -192,7 +215,13 @@ private:
 
   void controlLoop()
   {
-    if (!odom_received_ || trajectory_.empty()) return;
+    if (!odom_received_ || trajectory_.empty()) {
+        static int debug_counter = 0;
+        if (debug_counter++ % 20 == 0) {
+             RCLCPP_WARN(this->get_logger(), "Control Loop Waiting: Odom=%d, TrajSize=%zu", odom_received_, trajectory_.size());
+        }
+        return;
+    }
 
     double elapsed = (this->now() - trajectory_start_time_).seconds();
 
@@ -215,8 +244,56 @@ private:
     ControllerType ctrl_type = static_cast<ControllerType>(controller_type_int);
 
     // Compute control command
+    // Compute control command
     auto cmd_vel = trajectory_controller_->computeControl(
       current_pose_, trajectory_, elapsed, ctrl_type);
+
+    // Publish debug markers
+    auto now = this->now();
+    
+    // Lookahead Marker
+    visualization_msgs::msg::Marker lookahead_marker;
+    lookahead_marker.header.stamp = now;
+    lookahead_marker.header.frame_id = "odom";
+    lookahead_marker.ns = "debug";
+    lookahead_marker.id = 1;
+    lookahead_marker.type = visualization_msgs::msg::Marker::SPHERE;
+    lookahead_marker.action = visualization_msgs::msg::Marker::ADD;
+    lookahead_marker.scale.x = 0.2;
+    lookahead_marker.scale.y = 0.2;
+    lookahead_marker.scale.z = 0.2;
+    lookahead_marker.color.r = 1.0;
+    lookahead_marker.color.g = 0.0;
+    lookahead_marker.color.b = 0.0;
+    lookahead_marker.color.a = 1.0;
+    
+    auto lookahead_pt = trajectory_controller_->getLookaheadPoint();
+    lookahead_marker.pose.position.x = lookahead_pt.x;
+    lookahead_marker.pose.position.y = lookahead_pt.y;
+    lookahead_marker.pose.position.z = 0.1;
+    lookahead_marker_pub_->publish(lookahead_marker);
+
+    // Closest Point Marker
+    visualization_msgs::msg::Marker closest_marker;
+    closest_marker.header = lookahead_marker.header;
+    closest_marker.id = 2;
+    closest_marker.type = visualization_msgs::msg::Marker::SPHERE;
+    closest_marker.action = visualization_msgs::msg::Marker::ADD;
+    closest_marker.scale.x = 0.15;
+    closest_marker.scale.y = 0.15;
+    closest_marker.scale.z = 0.15;
+    closest_marker.color.r = 0.0;
+    closest_marker.color.g = 0.0;
+    closest_marker.color.b = 1.0;
+    closest_marker.color.a = 1.0;
+
+    size_t closest_idx = trajectory_controller_->getClosestIndex();
+    if (closest_idx < trajectory_.size()) {
+      closest_marker.pose.position.x = trajectory_[closest_idx].x;
+      closest_marker.pose.position.y = trajectory_[closest_idx].y;
+      closest_marker.pose.position.z = 0.1;
+      closest_point_marker_pub_->publish(closest_marker);
+    }
 
     // Publish command
     cmd_vel_pub_->publish(cmd_vel);
@@ -246,6 +323,8 @@ private:
   rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_pub_;
   rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr smooth_path_pub_;
   rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr trajectory_marker_pub_;
+  rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr lookahead_marker_pub_;
+  rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr closest_point_marker_pub_;
   rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
   rclcpp::TimerBase::SharedPtr control_timer_;
 

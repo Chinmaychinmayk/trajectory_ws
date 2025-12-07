@@ -43,6 +43,7 @@ public:
 private:
     std::vector<double> generateKnotVector(size_t n, int k);
     double basisFunction(int i, int k, double t, const std::vector<double>& knots);
+    double split_denominator(size_t n, int k);
 
     // Placeholder for other smoothing methods (not fully implemented in .cpp for brevity)
     std::vector<Point2D> bSplineSmoothing(const std::vector<Point2D>& raw_waypoints, size_t num_points, int degree);

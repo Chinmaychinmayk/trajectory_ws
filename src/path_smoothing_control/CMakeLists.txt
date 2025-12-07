@@ -74,7 +74,10 @@ endif()
 # ------------------- Install -------------------
 install(TARGETS path_smoothing_node DESTINATION lib/${PROJECT_NAME})
 install(DIRECTORY launch config DESTINATION share/${PROJECT_NAME}/)
-install(PROGRAMS scripts/visualize_trajectory.py DESTINATION lib/${PROJECT_NAME})
+install(PROGRAMS 
+  scripts/visualize_trajectory.py 
+  scripts/mock_sim_node.py
+  DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
 

@@ -1,0 +1,1 @@
+ament_cmake_symlink_install_targets("TARGET_FILES" "/home/newuser/trajectory_ws1/build/path_smoothing_control/path_smoothing_node" "TARGETS" "path_smoothing_node" "DESTINATION" "lib/path_smoothing_control")

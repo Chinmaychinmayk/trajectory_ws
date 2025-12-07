@@ -26,7 +26,17 @@ def generate_launch_description():
         parameters=[params_file],
     )
 
+    rviz_config = os.path.join(pkg_dir, 'config', 'path_smoothing.rviz')
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', rviz_config],
+        output='screen'
+    )
+
     return LaunchDescription([
         gazebo_launch,
         path_smoothing_node,
+        rviz_node
     ])

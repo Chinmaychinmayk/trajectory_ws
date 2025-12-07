@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/newuser/trajectory_ws/src/path_smoothing_control/src/trajectory_controller.cpp" "CMakeFiles/trajectory_controller_lib.dir/src/trajectory_controller.cpp.o" "gcc" "CMakeFiles/trajectory_controller_lib.dir/src/trajectory_controller.cpp.o.d"
+  "/home/newuser/trajectory_ws1/src/path_smoothing_control/src/trajectory_controller.cpp" "CMakeFiles/trajectory_controller_lib.dir/src/trajectory_controller.cpp.o" "gcc" "CMakeFiles/trajectory_controller_lib.dir/src/trajectory_controller.cpp.o.d"
   )
 
 # Targets to which this target links.

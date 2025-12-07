@@ -1,2 +1,1 @@
-source;share/path_smoothing_control/environment/ament_prefix_path.sh
-source;share/path_smoothing_control/environment/path.sh
+/home/newuser/trajectory_ws1/build/path_smoothing_control/ament_cmake_environment_hooks/local_setup.dsv

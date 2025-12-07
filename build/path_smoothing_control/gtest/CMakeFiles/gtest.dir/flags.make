@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DBOOST_TEST_DYN_LINK -DLIBBULLET_VERSION=3.05 -DLIBBULLET_VERSION_GT_282
 
-CXX_INCLUDES = -I/home/newuser/trajectory_ws/src/path_smoothing_control/include -I/opt/ros/humble/src/gtest_vendor/. -isystem /opt/ros/humble/src/gtest_vendor/include
+CXX_INCLUDES = -I/home/newuser/trajectory_ws1/src/path_smoothing_control/include -I/opt/ros/humble/src/gtest_vendor/. -isystem /opt/ros/humble/src/gtest_vendor/include
 
 CXX_FLAGS = -fPIC -Wno-missing-field-initializers -Wall -Wextra -Wpedantic -std=c++17 -Wno-null-dereference
 

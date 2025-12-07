@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="6" failures="0" disabled="0" errors="0" time="0" timestamp="2025-12-07T22:14:34" name="AllTests">
+  <testsuite name="TrajectoryControllerTest" tests="6" failures="0" disabled="0" errors="0" time="0" timestamp="2025-12-07T22:14:34">
+    <testcase name="PurePursuitControl" status="run" result="completed" time="0" timestamp="2025-12-07T22:14:34" classname="path_smoothing_control.TrajectoryControllerTest" />
+    <testcase name="StanleyControl" status="run" result="completed" time="0" timestamp="2025-12-07T22:14:34" classname="path_smoothing_control.TrajectoryControllerTest" />
+    <testcase name="PIDControl" status="run" result="completed" time="0" timestamp="2025-12-07T22:14:34" classname="path_smoothing_control.TrajectoryControllerTest" />
+    <testcase name="GoalReachedCheck" status="run" result="completed" time="0" timestamp="2025-12-07T22:14:34" classname="path_smoothing_control.TrajectoryControllerTest" />
+    <testcase name="EmptyTrajectory" status="run" result="completed" time="0" timestamp="2025-12-07T22:14:34" classname="path_smoothing_control.TrajectoryControllerTest" />
+    <testcase name="TrackingError" status="run" result="completed" time="0" timestamp="2025-12-07T22:14:34" classname="path_smoothing_control.TrajectoryControllerTest" />
+  </testsuite>
+</testsuites>
