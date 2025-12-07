@@ -1,0 +1,1 @@
+/home/newuser/trajectory_ws/build/path_smoothing_control/ament_cmake_environment_hooks/local_setup.bash

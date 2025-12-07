@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtrajectory_generator_lib.a CMakeFiles/trajectory_generator_lib.dir/src/trajectory_generator.cpp.o
+/usr/bin/ranlib libtrajectory_generator_lib.a

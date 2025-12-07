@@ -1,0 +1,1 @@
+/home/newuser/trajectory_ws/build/path_smoothing_control/ament_cmake_core/path_smoothing_controlConfig.cmake

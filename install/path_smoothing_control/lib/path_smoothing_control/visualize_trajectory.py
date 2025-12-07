@@ -1,0 +1,1 @@
+/home/newuser/trajectory_ws/src/path_smoothing_control/scripts/visualize_trajectory.py

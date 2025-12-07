@@ -1,0 +1,1 @@
+/home/newuser/trajectory_ws/src/path_smoothing_control/launch/path_smoothing_sim.launch.py
