@@ -1,7 +1,7 @@
 # Trajectory Generation and Tracking
 
 This ROS 2 package implements a complete pipeline for path smoothing, trajectory generation, and path tracking control for a differential drive robot (Turtlebot3).
-
+https://youtu.be/QHJmzlDehd4
 ## Features
 
 1.  **Path Smoothing**: Converts discrete waypoints into a continuous B-Spline path.
